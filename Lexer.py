@@ -18,6 +18,7 @@ reserved = {
     'int' : 'TkInt',
     'bool' : 'TkBool',
     'inter' : 'TkInter',
+    'array' : 'TkArray',
 
     #Condicionales
     'if' : 'TkIf',
@@ -26,12 +27,16 @@ reserved = {
 
     #Iteraciones
     'for' : 'TkFor',
+    'rof' : 'TkRof',
     'while' : 'TkWhile',
 
     #Auxiliares de Codicionales e iteraciones
     'do' : 'TkDo',
     'od' : 'TkOd',
     'of' : 'TkOf',
+    'if' : 'TkIf',
+    'fi' : 'Tkfi',
+
 
     #Entrada y salida
     'read' : 'TkRead',
