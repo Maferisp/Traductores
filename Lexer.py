@@ -137,7 +137,7 @@ t_TkConcat = r'\|\|'
 
 # Reglas Ignoradas
 t_ignore_Space = r'\s'             # Espacio en blanco en un vieo sale ' ' en la pagina sale ' \s'
-t_ignore_Comment = r'\//*'        # Comentarios (NO ESTOY CLARA TODO DE depende de como salgan los comentarios )
+t_ignore_Comment = r'\//.*'        # Comentarios (NO ESTOY CLARA TODO DE depende de como salgan los comentarios )
 t_ignore_Line = r' \n'            # Salto de linea
 t_ignore_Tab = r' \t'             # Tabuladores
 
@@ -214,13 +214,13 @@ while data:
     #for tok in lexer:
     #    print(tok.type, tok.value, tok.lineno)
     tok = lexer.token()
-    print(tok)
+    
     while tok:
         if (tok.type == 'TkNum' or tok.type == 'TkId' or tok.type == 'TkString'):
-            token_info = str(tok.type) + ' ("' + str(tok.value) + '") '\
-            + str(tok.lineno) + ' ' + str(tok.lexpos+1)
+            print(str(tok.type) + '("' + str(tok.value) + '") '\
+            + str(tok.lineno) + ' ' + str(tok.lexpos+1))
         else:
-            token_info = str(tok.type) + ' ' + str(tok.lineno) + ' ' + str(tok.lexpos+1)
+            print(str(tok.type) + ' ' + str(tok.lineno) + ' ' + str(tok.lexpos+1))
 
         #TOKENS_VALIDOS.append(token_info)
         tok = lexer.token()

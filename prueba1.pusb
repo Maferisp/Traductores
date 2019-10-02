@@ -1,6 +1,7 @@
 |[
     declare
         a, b, c : int;
+        //Comentario intermedio
         d, e, f : array[0..2]
         a := b + 3;
         read e 
