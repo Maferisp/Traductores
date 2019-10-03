@@ -22,6 +22,7 @@ reserved = {
 
     #Condicionales
     'if' : 'TkIf',
+    'fi' : 'Tkfi',
     'else' : 'TkElse',
     'then' : 'TkThen',
 
@@ -34,8 +35,6 @@ reserved = {
     'do' : 'TkDo',
     'od' : 'TkOd',
     'of' : 'TkOf',
-    'if' : 'TkIf',
-    'fi' : 'Tkfi',
 
 
     #Entrada y salida
@@ -209,6 +208,7 @@ while data:
     #pasamos la linea como data al lexer
     #Esto es con el fin de calcular bien la columna de los tokens
     lexer.input(data)
+    error = []
 
     #Iteramos sobre el la entrada para extraer los tokens
     #for tok in lexer:
@@ -221,6 +221,8 @@ while data:
             + str(tok.lineno) + ' ' + str(tok.lexpos+1))
         else:
             print(str(tok.type) + ' ' + str(tok.lineno) + ' ' + str(tok.lexpos+1))
+
+        print(TOKENS_INVALIDOS)
 
         #TOKENS_VALIDOS.append(token_info)
         tok = lexer.token()
