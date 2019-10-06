@@ -54,6 +54,9 @@ reserved = {
     'exists' : 'TkExists',
 
     #Operadores
+    'or' : 'TkOr',
+    'and' : 'TkAnd',
+    'not' : 'TkNot',
     'in' : 'TkIn',
 
     #Para los valores Booleanos
@@ -146,12 +149,13 @@ TOKENS_INVALIDOS = [] #Coleccion de tokens invalidos
 
 
 # Funciones Regulares
-def t_errornum(num): 
-    r'[0-9]+[a-zA-Z]+'
-    prueba = 'prueba: Unexpected character "' + str(num.value) + '" in row ' \
-        + str(num.lineno) + ', column ' + str(num.lexpos+1)
-    TOKENS_INVALIDOS.append(prueba)
-    num.lexer.skip(1)
+# Da error cuando se empieza por un numero y despues una letra
+def t_errornum(secuencia): 
+    r'[0-9]+[a-zA-Z0-9]+'
+    falla = 'Error: Unexpected character "' + str(secuencia.value) + '" in row ' \
+        + str(secuencia.lineno) + ', column ' + str(secuencia.lexpos+1)
+    TOKENS_INVALIDOS.append(falla)
+    secuencia.lexer.skip(1)
 
 def t_TkNum(t):
     r'\d+'
@@ -232,9 +236,8 @@ while data:
     #leemos otra linea
     data = file.readline()
 
-# Cuando hay un error
+# Cuando hay un error se imprime solo el error
 if (len(TOKENS_INVALIDOS)>0):
-
     for x in TOKENS_INVALIDOS:
         print(x)
 else:
