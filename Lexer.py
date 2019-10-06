@@ -146,6 +146,13 @@ TOKENS_INVALIDOS = [] #Coleccion de tokens invalidos
 
 
 # Funciones Regulares
+def t_errornum(num): 
+    r'[0-9]+[a-zA-Z]'
+    prueba = 'prueba: Unexpected character "' + str(num.value) + '" in row ' \
+        + str(num.lineno) + ', column ' + str(num.lexpos+1)
+    TOKENS_INVALIDOS.append(prueba)
+    num.lexer.skip(1)
+
 def t_TkNum(t):
     r'\d+'
     t.value = int(t.value)
@@ -173,6 +180,7 @@ def t_error(invalido):
     TOKENS_INVALIDOS.append(error)
     invalido.lexer.skip(1)
 
+
 ## Leer el archivo
 lexer = lex.lex()  #Construccion del lexer 
 """Main"""
@@ -198,7 +206,7 @@ file = open(filepath, 'r')
 #Guardamos las lineas de cada
 data = file.readline()
 
-while data and len(TOKENS_INVALIDOS)<1:
+while data:
     #pasamos la linea como data al lexer
     #Esto es con el fin de calcular bien la columna de los tokens
     lexer.input(data)
@@ -219,12 +227,16 @@ while data and len(TOKENS_INVALIDOS)<1:
         TOKENS_VALIDOS.append(token_info)
         tok = lexer.token()
 
+
+
     #leemos otra linea
     data = file.readline()
 
 # Cuando hay un error
-if(len(TOKENS_INVALIDOS)>0):
-    print( TOKENS_INVALIDOS[0])
-else: 
+if (len(TOKENS_INVALIDOS)>0):
+
+    for x in TOKENS_INVALIDOS:
+        print(x)
+else:
     for x in TOKENS_VALIDOS:
         print(x)
