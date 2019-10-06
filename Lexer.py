@@ -147,7 +147,7 @@ TOKENS_INVALIDOS = [] #Coleccion de tokens invalidos
 
 # Funciones Regulares
 def t_errornum(num): 
-    r'[0-9]+[a-zA-Z]'
+    r'[0-9]+[a-zA-Z]+'
     prueba = 'prueba: Unexpected character "' + str(num.value) + '" in row ' \
         + str(num.lineno) + ', column ' + str(num.lexpos+1)
     TOKENS_INVALIDOS.append(prueba)
