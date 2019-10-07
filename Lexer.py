@@ -140,8 +140,8 @@ t_TkConcat = r'\|\|'
 # Reglas Ignoradas
 t_ignore_Space = r'\s'             # Espacio en blanco 
 t_ignore_Comment = r'\//.*'        # Comentarios 
-t_ignore_Line = r' \n'             # Salto de linea
-t_ignore_Tab = r' \t'              # Tabuladores
+t_ignore_Line = r'\n'             # Salto de linea
+t_ignore_Tab = r'\t'              # Tabuladores
 
 
 TOKENS_VALIDOS = []  #Coleccion de tokens validos
@@ -151,7 +151,7 @@ TOKENS_INVALIDOS = [] #Coleccion de tokens invalidos
 # Funciones Regulares
 # Da error cuando se empieza por un numero y despues una letra
 def t_errornum(secuencia): 
-    r'[0-9]+[a-zA-Z0-9]+'
+    r'[0-9]+[a-zA-Z_]+'
     falla = 'Error: Unexpected character "' + str(secuencia.value) + '" in row ' \
         + str(secuencia.lineno) + ', column ' + str(secuencia.lexpos+1)
     TOKENS_INVALIDOS.append(falla)
@@ -230,7 +230,8 @@ while data:
 
         TOKENS_VALIDOS.append(token_info)
         tok = lexer.token()
-
+        #print(token_info)
+ 
 
 
     #leemos otra linea
