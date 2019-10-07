@@ -48,15 +48,7 @@ reserved = {
     'max' : 'TkMax',
     'min' : 'TkMin',
 
-    #Postcondicion
-    'Post' : 'TkPost',
-    'forall' : 'TkForall',
-    'exists' : 'TkExists',
-
     #Operadores
-    'or' : 'TkOr',
-    'and' : 'TkAnd',
-    'not' : 'TkNot',
     'in' : 'TkIn',
 
     #Para los valores Booleanos
@@ -140,22 +132,15 @@ t_TkConcat = r'\|\|'
 # Reglas Ignoradas
 t_ignore_Space = r'\s'             # Espacio en blanco 
 t_ignore_Comment = r'\//.*'        # Comentarios 
-t_ignore_Line = r'\n'             # Salto de linea
-t_ignore_Tab = r'\t'              # Tabuladores
+t_ignore_Line = r' \n'             # Salto de linea
+t_ignore_Tab = r' \t'              # Tabuladores
 
 
-TOKENS_VALIDOS = []  #Coleccion de tokens validos
-TOKENS_INVALIDOS = [] #Coleccion de tokens invalidos
+TOKENS_VALIDOS = []                #Coleccion de tokens validos
+TOKENS_INVALIDOS = []              #Coleccion de tokens invalidos
 
 
 # Funciones Regulares
-# Da error cuando se empieza por un numero y despues una letra
-def t_errornum(secuencia): 
-    r'[0-9]+[a-zA-Z_]+'
-    falla = 'Error: Unexpected character "' + str(secuencia.value) + '" in row ' \
-        + str(secuencia.lineno) + ', column ' + str(secuencia.lexpos+1)
-    TOKENS_INVALIDOS.append(falla)
-    secuencia.lexer.skip(1)
 
 def t_TkNum(t):
     r'\d+'
@@ -166,6 +151,14 @@ def t_TkId(identificar):
     r'[a-zA-Z]+[a-zA-Z_0-9]*'
     identificar.type =  reserved.get(identificar.value, 'TkId')
     return identificar
+
+# Da error cuando ocurre algo como 1e
+#def t_errornum(secuencia): 
+#    r'[0-9]+[a-zA-Z_]+'
+#    falla = 'Error: Unexpected character "' + str(secuencia.value) + '" in row ' \
+#        + str(secuencia.lineno) + ', column ' + str(secuencia.lexpos+1)
+#    TOKENS_INVALIDOS.append(falla)
+#    secuencia.lexer.skip(1)
 
 def t_TkString(string):
     r'"([^"\\\n]|\\"|\\\\|\\n)*"'
@@ -184,8 +177,10 @@ def t_error(invalido):
     TOKENS_INVALIDOS.append(error)
     invalido.lexer.skip(1)
 
+#############################
+###### Leer el archivo ######
+#############################
 
-## Leer el archivo
 lexer = lex.lex()  #Construccion del lexer 
 """Main"""
 
@@ -231,13 +226,12 @@ while data:
         TOKENS_VALIDOS.append(token_info)
         tok = lexer.token()
         #print(token_info)
- 
-
 
     #leemos otra linea
     data = file.readline()
 
 # Cuando hay un error se imprime solo el error
+# Cuando no hay error se imprimen los tokens validos
 if (len(TOKENS_INVALIDOS)>0):
     for x in TOKENS_INVALIDOS:
         print(x)
