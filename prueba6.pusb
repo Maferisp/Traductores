@@ -1,0 +1,8 @@
+|[
+    declare a, A: int, array[0..2]
+    A := 3, 2, 1;
+    a := A(2:4)[2]; // a toma el valor de 4 pero no ocurren cambios persistentes en A
+    a := A[2]; // a toma el valor de 1
+    A := A(2:4); // A es modificado por el arreglo 0:3, 1:2, 2:4
+    a := A[2]; // a toma el valor de 4
+]|

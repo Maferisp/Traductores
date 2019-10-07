@@ -1,0 +1,9 @@
+|[
+    declare
+        a, b, c : int;
+        //Comentario intermedio
+        d, e1a25, f : array[0..2]
+        a := b + 30;
+        read e 
+        // Comentario
+]|

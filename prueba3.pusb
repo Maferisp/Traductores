@@ -1,0 +1,22 @@
+ |[
+    declare
+        a, b, c : int;
+        //Comentario intermedio
+        d, e1a25, f : array[0..2]
+        a := b + 3;
+        read e 
+        // Comentario
+
+    declare
+        g, h, i : bool;
+        (g + h ) --> i;
+        g == i;
+        read  g
+    
+    declare 
+        o, p, l : int;
+        o <= l;
+        l >= p;
+        o || p;
+        read
+]|
