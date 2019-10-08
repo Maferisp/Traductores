@@ -108,7 +108,7 @@ t_TkCOpenPar = r'\('
 t_TkClosePar = r'\)'
 t_TkAsig = r':='
 t_TkSemicolon = r';'
-t_TkArrow = r'==>'
+t_TkArrow = r'-->'
 
 t_TkPlus = r'\+'
 t_TkMinus = r'\-'
