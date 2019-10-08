@@ -196,7 +196,7 @@ filepath = argv[1]
 ext = filepath.split('.')
 
 #Verificamos si la extension es la correcta
-if ext[-1] != 'pusb':
+if ext[-1] != 'gusb':
     print("Error al leer el archivo: Extension incorrecta.")
     sys.exit()
 
